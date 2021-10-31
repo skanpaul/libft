@@ -16,8 +16,12 @@ CFLAGS = -Wall -Wextra -Werror
 LIBNAME1 = libft.a
 SRC_LIB = $(wildcard *.c)
 
-LIBNAME2 = ft
-LIBPATH2 = .
+#LIBNAME2 = ft
+#LIBPATH2 = .
+
+all: $(NAME)
+
+$(NAME): cli
 
 # **************************************************************************** #
 cli: cl
@@ -28,13 +32,7 @@ cl: co
 
 co:
 	gcc $(CFLAGS) -c $(SRC_LIB)
-
 # **************************************************************************** #
-all: $(NAME)
-
-$(NAME):
-	echo bonjour
-#	gcc $(CFLAGS) -o $(NAME) $(SRC) -L$(LIBPATH2) -l$(LIBNAME2)
 
 clean:
 	rm -f *.o
@@ -43,6 +41,3 @@ fclean: clean
 	rm -f $(NAME)
 
 re: fclean all
-
-dall:
-	echo $(SRC_LIB)
