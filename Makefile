@@ -10,34 +10,35 @@
 #                                                                              #
 # **************************************************************************** #
 
-NAME = sorakann
-CFLAGS = -Wall -Wextra -Werror
+CC		= gcc
+CFLAGS 	= -Wall -Wextra -Werror
 
-LIBNAME1 = libft.a
-SRC_LIB = $(wildcard *.c)
+AR 		= ar rc
+RM		= rm -f 
 
-#LIBNAME2 = ft
-#LIBPATH2 = .
+SRC 	= $(wildcard *.c)
+OBJS 	= ${SRC:.c=.o}
+
+NAME 	= libft.a
 
 all: $(NAME)
-
-$(NAME): cli
+# **************************************************************************** #
+%.o: %.c
+	$(CC) -o $@ -c $^
 
 # **************************************************************************** #
-cli: cl
-	ranlib $(LIBNAME1)
 
-cl: co
-	ar rc $(LIBNAME1) *.o
-
-co:
-	gcc $(CFLAGS) -c $(SRC_LIB)
+$(NAME): $(OBJS)
+	${AR} $(NAME) $(OBJS)
+	ranlib $(NAME)
 # **************************************************************************** #
 
 clean:
-	rm -f *.o
+	${RM} *.o
 
 fclean: clean
-	rm -f $(NAME)
+	${RM} $(NAME)
 
 re: fclean all
+
+.PHONY: all clean fclean re
