@@ -61,4 +61,8 @@ bonus: ${OBJS} ${OBJS_BONUS}
 	${AR} ${NAME} ${OBJS} ${OBJS_BONUS} 
 	ranlib $(NAME)
 
+so:
+	$(CC) -nostartfiles -fPIC $(CFLAGS) $(SRC)
+	gcc -nostartfiles -shared -o libft.so $(OBJS) ${OBJS_BONUS} 
+
 .PHONY: all clean fclean re
