@@ -1,27 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstadd_front.c                                  :+:      :+:    :+:   */
+/*   ft_lstclear.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ski <marvin@42lausanne.ch>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/23 10:08:26 by ski               #+#    #+#             */
-/*   Updated: 2021/11/23 10:08:29 by ski              ###   ########.fr       */
+/*   Created: 2021/11/25 13:25:39 by ski               #+#    #+#             */
+/*   Updated: 2021/11/25 13:25:42 by ski              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "libft.h"
 
 /* ************************************************************************** */
-void	ft_lstadd_front(t_list **alst, t_list *new)
+void	ft_lstclear(t_list **lst, void (*del)(void *))
 {
-	if (alst == NULL)
+	t_list	*ptr1;
+	t_list	*ptr2;
+
+	ptr1 = *lst;
+	ptr2 = NULL;
+	if ((ptr1 == NULL) || (del == NULL))
 		return ;
-	if (*alst == NULL)
-		*alst = new;
-	else
+	while (ptr1->next != NULL)
 	{
-		(*new).next = (*alst);
-		(*alst) = new;
+		ptr2 = ptr1->next;
+		ft_lstdelone(ptr1, del);
+		ptr1 = ptr2;
 	}
+	ft_lstdelone(ptr1, del);
+	*lst = NULL;
 	return ;
 }
