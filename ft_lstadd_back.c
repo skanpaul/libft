@@ -1,33 +1,49 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memcpy.c                                        :+:      :+:    :+:   */
+/*   ft_lstadd_back.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ski <marvin@42lausanne.ch>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/04 09:05:57 by ski               #+#    #+#             */
-/*   Updated: 2021/11/04 09:06:01 by ski              ###   ########.fr       */
+/*   Created: 2021/11/23 16:36:08 by ski               #+#    #+#             */
+/*   Updated: 2021/11/23 16:36:10 by ski              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "libft.h"
 
 /* ************************************************************************** */
+// void	ft_lstadd_back(t_list **alst, t_list *new)
+// {
+// 	if ((!alst) || (!new))
+// 		return ;
 
-void	*ft_memcpy(void *dst, const void *src, size_t n)
+// 	if (*alst == NULL)
+// 		*alst = new;
+// 	while (((*alst)->next) != NULL)
+// 	{
+// 		*alst = (*alst)->next;
+// 	}
+// 	(*alst)->next = new;
+// 	new->next = NULL;	
+// }
+
+void	ft_lstadd_back(t_list **alst, t_list *new)
 {
-	size_t	i;
-	char	*ptr_src;
-	char	*ptr_dst;
+	t_list *ptr;
 
-	if ((dst == 0) & (src == 0))
-		return (0);
-	ptr_dst = (char *)dst;
-	ptr_src = (char *)src;
-	i = 0;
-	while (i < n)
+	ptr = *alst;
+	
+	
+	if ((!alst) || (!new))
+		return ;
+
+	if (ptr == NULL)
+		ptr = new;
+
+	while ((ptr->next) != NULL)
 	{
-		ptr_dst[i] = ptr_src[i];
-		i++;
+		ptr = ptr->next;
 	}
-	return (dst);
+	ptr->next = new;
+	// new->next = NULL;	
 }

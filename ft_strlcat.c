@@ -1,33 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memcpy.c                                        :+:      :+:    :+:   */
+/*   ft_strlcat.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ski <marvin@42lausanne.ch>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/04 09:05:57 by ski               #+#    #+#             */
-/*   Updated: 2021/11/04 09:06:01 by ski              ###   ########.fr       */
+/*   Created: 2021/11/09 11:49:50 by ski               #+#    #+#             */
+/*   Updated: 2021/11/09 11:49:53 by ski              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "libft.h"
 
 /* ************************************************************************** */
-
-void	*ft_memcpy(void *dst, const void *src, size_t n)
+size_t	ft_strlcat(char *dst, const char *src, size_t dstsize)
 {
 	size_t	i;
-	char	*ptr_src;
-	char	*ptr_dst;
+	size_t	j;
 
-	if ((dst == 0) & (src == 0))
-		return (0);
-	ptr_dst = (char *)dst;
-	ptr_src = (char *)src;
-	i = 0;
-	while (i < n)
+	j = ft_strlen(dst);
+	if (dstsize < j)
+		return (ft_strlen(src) + dstsize);
+	if (dstsize - j > 0)
 	{
-		ptr_dst[i] = ptr_src[i];
-		i++;
+		i = 0;
+		while ((i < (dstsize - j - 1)) & (src[i] != '\0'))
+		{
+			dst[j + i] = src[i];
+			i++;
+		}
+		dst[j + i] = '\0';
 	}
-	return (dst);
+	return (ft_strlen(src) + j);
 }

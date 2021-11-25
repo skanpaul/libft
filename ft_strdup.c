@@ -1,33 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memcpy.c                                        :+:      :+:    :+:   */
+/*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ski <marvin@42lausanne.ch>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/04 09:05:57 by ski               #+#    #+#             */
-/*   Updated: 2021/11/04 09:06:01 by ski              ###   ########.fr       */
+/*   Created: 2021/11/13 12:59:37 by ski               #+#    #+#             */
+/*   Updated: 2021/11/13 12:59:40 by ski              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "libft.h"
 
 /* ************************************************************************** */
-
-void	*ft_memcpy(void *dst, const void *src, size_t n)
+char	*ft_strdup(const char *s1)
 {
 	size_t	i;
-	char	*ptr_src;
-	char	*ptr_dst;
+	size_t	mem_len;
+	char	*new;
 
-	if ((dst == 0) & (src == 0))
+	mem_len = ft_strlen(s1) + 1;
+	new = (char *)malloc(mem_len * sizeof(char));
+	if (new == 0)
 		return (0);
-	ptr_dst = (char *)dst;
-	ptr_src = (char *)src;
 	i = 0;
-	while (i < n)
+	while (s1[i] != '\0')
 	{
-		ptr_dst[i] = ptr_src[i];
+		new[i] = s1[i];
 		i++;
 	}
-	return (dst);
+	new[i] = '\0';
+	return (new);
 }

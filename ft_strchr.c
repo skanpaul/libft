@@ -1,33 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memcpy.c                                        :+:      :+:    :+:   */
+/*   ft_strchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ski <marvin@42lausanne.ch>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/04 09:05:57 by ski               #+#    #+#             */
-/*   Updated: 2021/11/04 09:06:01 by ski              ###   ########.fr       */
+/*   Created: 2021/11/08 10:25:04 by ski               #+#    #+#             */
+/*   Updated: 2021/11/08 10:25:10 by ski              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "libft.h"
 
 /* ************************************************************************** */
-
-void	*ft_memcpy(void *dst, const void *src, size_t n)
+char	*ft_strchr(const char *s, int c)
 {
-	size_t	i;
-	char	*ptr_src;
-	char	*ptr_dst;
+	int		i;
+	char	cc;
 
-	if ((dst == 0) & (src == 0))
-		return (0);
-	ptr_dst = (char *)dst;
-	ptr_src = (char *)src;
+	cc = (char) c;
 	i = 0;
-	while (i < n)
+	while (s[i] != '\0')
 	{
-		ptr_dst[i] = ptr_src[i];
+		if (s[i] == cc)
+			return ((char *)s + i);
 		i++;
 	}
-	return (dst);
+	if (cc == '\0')
+		return ((char *)s + i);
+	return (0);
 }

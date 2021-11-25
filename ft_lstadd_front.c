@@ -1,33 +1,43 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memcpy.c                                        :+:      :+:    :+:   */
+/*   ft_lstadd_front.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ski <marvin@42lausanne.ch>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/04 09:05:57 by ski               #+#    #+#             */
-/*   Updated: 2021/11/04 09:06:01 by ski              ###   ########.fr       */
+/*   Created: 2021/11/23 10:08:26 by ski               #+#    #+#             */
+/*   Updated: 2021/11/23 10:08:29 by ski              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "libft.h"
 
 /* ************************************************************************** */
-
-void	*ft_memcpy(void *dst, const void *src, size_t n)
+void	ft_lstadd_front(t_list **alst, t_list *new)
 {
-	size_t	i;
-	char	*ptr_src;
-	char	*ptr_dst;
-
-	if ((dst == 0) & (src == 0))
-		return (0);
-	ptr_dst = (char *)dst;
-	ptr_src = (char *)src;
-	i = 0;
-	while (i < n)
+	if ((alst != NULL) && (new != NULL))
 	{
-		ptr_dst[i] = ptr_src[i];
-		i++;
+		new->next = *alst;
+		*alst = new;
 	}
-	return (dst);
 }
+
+// void	ft_lstadd_front_BBB(t_list **alst, t_list *new)
+// {
+// 	size_t i;
+
+// 	if(!alst)
+// 		return ;
+	
+// 	i = 0;	
+// 	while (alst[i] != NULL)
+// 		i++;
+
+// 	while(i > 0)
+// 	{
+// 		alst[i + 1] = 	alst[i];
+// 		i--;
+// 	}
+// 	alst[i + 1] = 	alst[i];
+// 	alst[i] = new;
+// 	new->next = alst[1];
+// }

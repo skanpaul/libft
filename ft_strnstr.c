@@ -1,33 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memcpy.c                                        :+:      :+:    :+:   */
+/*   ft_strnstr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ski <marvin@42lausanne.ch>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/04 09:05:57 by ski               #+#    #+#             */
-/*   Updated: 2021/11/04 09:06:01 by ski              ###   ########.fr       */
+/*   Created: 2021/11/11 20:25:41 by ski               #+#    #+#             */
+/*   Updated: 2021/11/11 20:25:44 by ski              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "libft.h"
 
 /* ************************************************************************** */
-
-void	*ft_memcpy(void *dst, const void *src, size_t n)
+char	*ft_strnstr(const char *haystack, const char *needle, size_t len)
 {
 	size_t	i;
-	char	*ptr_src;
-	char	*ptr_dst;
+	size_t	j;
+	size_t	j_max;
 
-	if ((dst == 0) & (src == 0))
-		return (0);
-	ptr_dst = (char *)dst;
-	ptr_src = (char *)src;
+	if (needle[0] == '\0')
+		return ((char *)haystack);
 	i = 0;
-	while (i < n)
+	while ((haystack[i] != '\0') & (i <= len))
 	{
-		ptr_dst[i] = ptr_src[i];
+		if (needle[0] == haystack[i])
+		{
+			j = 0;
+			j_max = len - i ;
+			while ((j < j_max) & (needle[j] == haystack[i + j])
+				& (needle[j] != '\0'))
+				j++;
+			if (needle[j] == '\0')
+				return ((char *)haystack + i);
+		}
 		i++;
 	}
-	return (dst);
+	return (0);
 }
