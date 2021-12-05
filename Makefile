@@ -11,13 +11,12 @@
 # **************************************************************************** #
 CC			= gcc
 CFLAGS 		= -Wall -Wextra -Werror
-AR 			= ar -rc
+AR 			= ar -rcs
 RM			= rm -f
 NORM		= norminette -R CheckForbiddenSourceHeader
 
 # ----------------------------------------------------------------------------
-LIBFT_NAME	= libft.a
-NAME 		= ${LIBFT_NAME}
+NAME	= libft.a
 
 SRC_LIBFT = \
 		ft_isalpha.c	ft_isdigit.c	ft_isalnum.c	ft_isascii.c \
@@ -35,7 +34,6 @@ SRC_LIBFT = \
 		ft_lstclear.c	ft_lstiter.c		ft_lstmap.c
 
 OBJ_LIBFT		= ${SRC_LIBFT:.c=.o}
-OBJ_LIBFT_BONUS	= ${SRC_BONUS:.c=.o}
 
 # **************************************************************************** #
 all: $(NAME)
@@ -43,11 +41,10 @@ all: $(NAME)
 # **************************************************************************** #
 $(NAME): $(OBJ_LIBFT)
 	${AR} $(NAME) $(OBJ_LIBFT)
-	ranlib $(NAME)
 
 # **************************************************************************** #
 clean:
-	${RM} *.o
+	${RM} $(OBJ_LIBFT)
 
 fclean: clean
 	${RM} $(NAME)
