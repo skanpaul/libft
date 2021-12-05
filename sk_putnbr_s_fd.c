@@ -1,70 +1,59 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_itoa.c                                          :+:      :+:    :+:   */
+/*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ski <marvin@42lausanne.ch>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/19 10:41:22 by ski               #+#    #+#             */
-/*   Updated: 2021/11/19 10:41:25 by ski              ###   ########.fr       */
+/*   Created: 2021/11/21 09:33:36 by ski               #+#    #+#             */
+/*   Updated: 2021/11/21 09:33:39 by ski              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "libft.h"
 
 /* ************************************************************************** */
-static char	*sk_itoa_recursiv(long value, int neg, size_t *str_len, size_t *i);
+static size_t	sk_putnbr_recursive(long n_long, int fd, size_t cnt_prnt);
 
 /* ************************************************************************** */
-char	*ft_itoa(int n)
+size_t	sk_putnbr_s_fd(int n, int fd)
 {
 	long	n_long;
+	size_t	cnt_prnt;
 	int		neg;
-	char	*str;
-	size_t	str_len;
-	size_t	i;
 
-	n_long = (long)n;
 	neg = 0;
-	str_len = 1;
-	i = 0;
+	cnt_prnt = 0;
+	if (fd == -1)
+		return (0);
+	n_long = (long)n;
 	if (n_long < 0)
 	{
 		n_long *= (-1);
+		write(fd, "-", 1);
 		neg = 1;
-		str_len++;
 	}
-	str = sk_itoa_recursiv(n_long, neg, &str_len, &i);
-	if (!str)
-		return (NULL);
-	str[str_len] = '\0';
-	return (str);
+	cnt_prnt += sk_putnbr_recursive(n_long, fd, cnt_prnt);
+	if (neg == 1)
+		cnt_prnt++;
+	return (cnt_prnt);
 }
 
 /* ************************************************************************** */
-static char	*sk_itoa_recursiv(long value, int neg, size_t *str_len, size_t *i)
+static size_t	sk_putnbr_recursive(long n_long, int fd, size_t cnt_prnt)
 {
-	char	*str;
+	char	c;
 
-	str = NULL;
-	if ((0 <= value) & (value <= 9))
+	if ((0 <= n_long) & (n_long <= 9))
 	{
-		str = (char *) malloc((*str_len + 1) * sizeof(char));
-		if (!str)
-			return (NULL);
-		if (neg == 1)
-		{
-			str[*i] = '-';
-			(*i)++;
-		}
+		c = n_long + '0';
+		cnt_prnt++;
 	}
 	else
 	{
-		*str_len += 1;
-		str = sk_itoa_recursiv((value / 10), neg, str_len, i);
-		if (!str)
-			return (NULL);
+		cnt_prnt += sk_putnbr_recursive((n_long / 10), fd, cnt_prnt);
+		c = (n_long % 10) + '0';
+		cnt_prnt++;
 	}
-	str[*i] = (value % 10) + '0';
-	(*i)++;
-	return (str);
+	write(fd, &c, 1);
+	return (cnt_prnt);
 }

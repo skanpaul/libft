@@ -1,48 +1,49 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
+/*   sk_putnbr_u_fd.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ski <marvin@42lausanne.ch>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/21 09:33:36 by ski               #+#    #+#             */
-/*   Updated: 2021/11/21 09:33:39 by ski              ###   ########.fr       */
+/*   Created: 2021/12/02 14:02:03 by ski               #+#    #+#             */
+/*   Updated: 2021/12/02 14:02:05 by ski              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "libft.h"
 
 /* ************************************************************************** */
-static void	sk_putnbr_recursive(long n_long, int fd);
+static size_t	sk_recursive(unsigned long n_long, int fd, size_t cnt_prnt);
 
 /* ************************************************************************** */
-void	ft_putnbr_fd(int n, int fd)
+size_t	sk_putnbr_u_fd(unsigned int n, int fd)
 {
-	long	n_long;
+	unsigned long	n_ul;
+	size_t			cnt_prnt;
 
+	cnt_prnt = 0;
 	if (fd == -1)
-		return ;
-	n_long = (long)n;
-	if (n_long < 0)
-	{
-		n_long *= (-1);
-		write(fd, "-", 1);
-	}
-	sk_putnbr_recursive(n_long, fd);
+		return (0);
+	n_ul = (unsigned long)n;
+	cnt_prnt += sk_recursive(n_ul, fd, cnt_prnt);
+	return (cnt_prnt);
 }
 
 /* ************************************************************************** */
-static void	sk_putnbr_recursive(long n_long, int fd)
+static size_t	sk_recursive(unsigned long n_ul, int fd, size_t cnt_prnt)
 {
 	char	c;
 
-	if ((0 <= n_long) & (n_long <= 9))
+	if ((0 <= n_ul) & (n_ul <= 9))
 	{
-		c = n_long + '0';
+		c = n_ul + '0';
+		cnt_prnt++;
 	}
 	else
 	{
-		sk_putnbr_recursive((n_long / 10), fd);
-		c = (n_long % 10) + '0';
+		cnt_prnt += sk_recursive((n_ul / 10), fd, cnt_prnt);
+		c = (n_ul % 10) + '0';
+		cnt_prnt++;
 	}
 	write(fd, &c, 1);
+	return (cnt_prnt);
 }
