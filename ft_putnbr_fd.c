@@ -26,18 +26,15 @@ size_t	ft_putnbr_fd(int number, int fd)
 
 	if (fd == -1)
 		return (0);
-
 	cnt_print = 0;
 	l_number = (long)number;
-
 	if (l_number < 0)
 	{
 		l_number *= (-1);
-		if(write(fd, "-", 1) == -1)
-			return(0);
+		if (write(fd, "-", 1) == -1)
+			return (0);
 		cnt_print++;
 	}
-
 	cnt_print += ft_putnbr_fd_recursive(l_number, fd);
 	return (cnt_print);
 }
@@ -46,14 +43,13 @@ size_t	ft_putnbr_fd(int number, int fd)
 static size_t	ft_putnbr_fd_recursive(long l_number, int fd)
 {
 	char	c;
-	size_t cnt_print;
+	size_t	cnt_print;
 
 	cnt_print = 0;
-
 	if ((0 <= l_number) & (l_number <= 9))
 	{
 		c = l_number + '0';
-		if(write(fd, &c, 1) == -1)
+		if (write(fd, &c, 1) == -1)
 			return (0);
 		cnt_print++;
 	}
@@ -65,5 +61,5 @@ static size_t	ft_putnbr_fd_recursive(long l_number, int fd)
 			return (0);
 		cnt_print++;
 	}
-	return(cnt_print);
+	return (cnt_print);
 }

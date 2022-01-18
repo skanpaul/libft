@@ -16,6 +16,7 @@ size_t	ft_putchar_fd(char c, int fd)
 {
 	if (fd == -1)
 		return (0);
-	write(fd, &c, 1);
+	if (write(fd, &c, 1) == -1)
+		return (0);
 	return (1);
 }

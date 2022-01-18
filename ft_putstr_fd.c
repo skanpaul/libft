@@ -19,13 +19,12 @@
 /* ************************************************************************** */
 size_t	ft_putstr_fd(char *s, int fd)
 {
-	size_t len;
+	size_t	len;
 
 	len = ft_strlen(s);
 	if ((!s) | (fd == -1))
 		return (0);
-	if(write(fd, s, len) == -1)
+	if (write(fd, s, len) == -1)
 		return (0);
-
 	return (len);
 }
