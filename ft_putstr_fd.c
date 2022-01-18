@@ -12,9 +12,20 @@
 #include "libft.h"
 
 /* ************************************************************************** */
-void	ft_putstr_fd(char *s, int fd)
+// RETURN 0 IF THERE IS AN ERROR LIKE:
+//		s == NULL
+//		fd == -1
+//		write() return -1
+/* ************************************************************************** */
+size_t	ft_putstr_fd(char *s, int fd)
 {
+	size_t len;
+
+	len = ft_strlen(s);
 	if ((!s) | (fd == -1))
-		return ;
-	write(fd, s, ft_strlen(s));
+		return (0);
+	if(write(fd, s, len) == -1)
+		return (0);
+
+	return (len);
 }
