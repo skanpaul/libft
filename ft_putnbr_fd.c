@@ -12,37 +12,58 @@
 #include "libft.h"
 
 /* ************************************************************************** */
-static void	sk_putnbr_recursive(long n_long, int fd);
+static size_t	ft_putnbr_fd_recursive(long l_number, int fd);
 
 /* ************************************************************************** */
-void	ft_putnbr_fd(int n, int fd)
+// RETURN 0 IF THERE IS AN ERROR WHEN:
+//		fd == -1
+//		write() return -1
+/* ************************************************************************** */
+size_t	ft_putnbr_fd(int number, int fd)
 {
-	long	n_long;
+	long	l_number;
+	size_t	cnt_print;
 
 	if (fd == -1)
-		return ;
-	n_long = (long)n;
-	if (n_long < 0)
+		return (0);
+
+	cnt_print = 0;
+	l_number = (long)number;
+
+	if (l_number < 0)
 	{
-		n_long *= (-1);
-		write(fd, "-", 1);
+		l_number *= (-1);
+		if(write(fd, "-", 1) == -1)
+			return(0);
+		cnt_print++;
 	}
-	sk_putnbr_recursive(n_long, fd);
+
+	cnt_print += ft_putnbr_fd_recursive(l_number, fd);
+	return (cnt_print);
 }
 
 /* ************************************************************************** */
-static void	sk_putnbr_recursive(long n_long, int fd)
+static size_t	ft_putnbr_fd_recursive(long l_number, int fd)
 {
 	char	c;
+	size_t cnt_print;
 
-	if ((0 <= n_long) & (n_long <= 9))
+	cnt_print = 0;
+
+	if ((0 <= l_number) & (l_number <= 9))
 	{
-		c = n_long + '0';
+		c = l_number + '0';
+		if(write(fd, &c, 1) == -1)
+			return (0);
+		cnt_print++;
 	}
 	else
 	{
-		sk_putnbr_recursive((n_long / 10), fd);
-		c = (n_long % 10) + '0';
+		cnt_print += ft_putnbr_fd_recursive((l_number / 10), fd);
+		c = (l_number % 10) + '0';
+		if (write(fd, &c, 1) == -1)
+			return (0);
+		cnt_print++;
 	}
-	write(fd, &c, 1);
+	return(cnt_print);
 }
