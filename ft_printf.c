@@ -9,7 +9,7 @@
 /*   Updated: 2021/11/29 08:26:09 by ski              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "ft_printf.h"
+#include "libft.h"
 
 /* ************************************************************************** */
 static int	print_variadic(va_list ptr_var, char type_conv);
@@ -52,15 +52,15 @@ static int	print_variadic(va_list ptr_var, char type_conv)
 
 	n = 0;
 	if (type_conv == 'c')
-		return (sk_putchar_fd(va_arg(ptr_var, int), 1));
+		return (ft_putchar_fd(va_arg(ptr_var, int), 1));
 	if (type_conv == 's')
-		return (sk_putstr_printf_fd(va_arg(ptr_var, char *), 1));
+		return (ft_printf_fd_s(va_arg(ptr_var, char *), 1));
 	if (type_conv == 'p')
-		return (sk_putptr_fd(va_arg(ptr_var, size_t), 1));
+		return (ft_printf_fd_ptr(va_arg(ptr_var, size_t), 1));
 	if ((type_conv == 'd') || (type_conv == 'i'))
-		return (sk_putnbr_s_fd(va_arg(ptr_var, int), 1));
+		return (ft_putnbr_fd(va_arg(ptr_var, int), 1));
 	if (type_conv == 'u')
-		return (sk_putnbr_u_fd(va_arg(ptr_var, unsigned int), 1));
+		return (ft_putnbr_fd_u(va_arg(ptr_var, unsigned int), 1));
 	if (type_conv == 'x')
 		return (sk_puthex_low_fd(va_arg(ptr_var, int), 1));
 	if (type_conv == 'X')
