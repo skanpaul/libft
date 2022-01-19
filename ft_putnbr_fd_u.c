@@ -12,38 +12,41 @@
 #include "libft.h"
 
 /* ************************************************************************** */
-static size_t	sk_recursive(unsigned long n_long, int fd, size_t cnt_prnt);
+static size_t	sk_recursive(unsigned long n_long, int fd);
 
 /* ************************************************************************** */
-size_t	ft_putnbr_fd_u(unsigned int n, int fd)
+size_t	ft_putnbr_fd_u(unsigned int u_number, int fd)
 {
-	unsigned long	n_ul;
+	unsigned long	ul_number;
 	size_t			cnt_prnt;
 
-	cnt_prnt = 0;
 	if (fd == -1)
 		return (0);
-	n_ul = (unsigned long)n;
-	cnt_prnt += sk_recursive(n_ul, fd, cnt_prnt);
+	cnt_prnt = 0;
+	ul_number = (unsigned long)u_number;
+	cnt_prnt += sk_recursive(ul_number, fd);
 	return (cnt_prnt);
 }
 
 /* ************************************************************************** */
-static size_t	sk_recursive(unsigned long n_ul, int fd, size_t cnt_prnt)
+static size_t	sk_recursive(unsigned long ul_number, int fd)
 {
 	char	c;
+	size_t cnt_prnt;
 
-	if ((0 <= n_ul) & (n_ul <= 9))
+	cnt_prnt = 0;
+	if ((0 <= ul_number) & (ul_number <= 9))
 	{
-		c = n_ul + '0';
+		c = ul_number + '0';
+		write(fd, &c, 1);
 		cnt_prnt++;
 	}
 	else
 	{
-		cnt_prnt += sk_recursive((n_ul / 10), fd, cnt_prnt);
-		c = (n_ul % 10) + '0';
+		cnt_prnt += sk_recursive((ul_number / 10), fd);
+		c = (ul_number % 10) + '0';
+		write(fd, &c, 1);
 		cnt_prnt++;
 	}
-	write(fd, &c, 1);
 	return (cnt_prnt);
 }

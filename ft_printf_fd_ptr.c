@@ -23,7 +23,8 @@ size_t	ft_printf_fd_ptr(unsigned long n, int fd)
 	cnt_prnt = 0;
 	c = '\0';
 	write(fd, "0x", 2);
-	cnt_prnt = sk_puthex_recursive(n, fd, cnt_prnt) + 2;
+	cnt_prnt += 2;
+	cnt_prnt += sk_puthex_recursive(n, fd, cnt_prnt);
 	return (cnt_prnt);
 }
 

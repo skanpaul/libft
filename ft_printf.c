@@ -62,9 +62,9 @@ static int	print_variadic(va_list ptr_var, char type_conv)
 	if (type_conv == 'u')
 		return (ft_putnbr_fd_u(va_arg(ptr_var, unsigned int), 1));
 	if (type_conv == 'x')
-		return (sk_puthex_low_fd(va_arg(ptr_var, int), 1));
+		return (ft_printf_fd_xlow(va_arg(ptr_var, int), 1));
 	if (type_conv == 'X')
-		return (sk_puthex_up_fd(va_arg(ptr_var, int), 1));
+		return (ft_printf_fd_xup(va_arg(ptr_var, int), 1));
 	if (type_conv == '%')
 	{
 		write(1, "%%", 1);

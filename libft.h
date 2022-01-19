@@ -79,13 +79,13 @@ t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
 /* ------------------------------------------------------ */
 int		ft_printf(const char *text, ...);
 
-size_t	sk_putstr_fd(char *s, int fd);			// add: 18.01.2022
+size_t	sk_putstr_fd(char *s, int fd);				// add: 18.01.2022
 
-size_t	ft_printf_fd_s(char *s, int fd);	// add: 18.01.2022
+size_t	ft_printf_fd_s(char *s, int fd);			// add: 18.01.2022
 size_t	ft_printf_fd_ptr(unsigned long n, int fd);	// add: 18.01.2022
-size_t	ft_putnbr_fd_u(unsigned int u, int fd);	// add: 18.01.2022
-size_t	sk_puthex_low_fd(int n, int fd);		// add: 18.01.2022
-size_t	sk_puthex_up_fd(int n, int fd);			// add: 18.01.2022
+size_t	ft_putnbr_fd_u(unsigned int u, int fd);		// add: 18.01.2022
+size_t	ft_printf_fd_xlow(int n, int fd);		// add: 19.01.2022
+size_t	ft_printf_fd_xup(int n, int fd);		// add: 19.01.2022
 
 /* ************************************************************************** */
 /* int		ft_isspace(int c); */
