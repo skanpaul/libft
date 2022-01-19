@@ -14,6 +14,7 @@
 /* ************************************************************************** */
 static size_t	sk_puthex_recursive(unsigned int n, int fd);
 static char		conv_dec_to_hex(unsigned int u_number);
+
 /* ************************************************************************** */
 size_t	ft_printf_fd_xlow(int number, int fd)
 {
@@ -29,8 +30,8 @@ size_t	ft_printf_fd_xlow(int number, int fd)
 /* ************************************************************************** */
 static size_t	sk_puthex_recursive(unsigned int u_number, int fd)
 {
-	char			c;
-	size_t 			cnt_prnt;
+	char	c;
+	size_t	cnt_prnt;
 
 	cnt_prnt = 0;
 	if ((0 <= u_number) && (u_number <= 15))
@@ -53,8 +54,8 @@ static size_t	sk_puthex_recursive(unsigned int u_number, int fd)
 /* ************************************************************************** */
 static char	conv_dec_to_hex(unsigned int u_number)
 {
-	char c;
-	
+	char	c;
+
 	if (u_number < 10)
 		c = u_number + '0';
 	else

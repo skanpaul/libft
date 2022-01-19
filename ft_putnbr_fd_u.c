@@ -32,7 +32,7 @@ size_t	ft_putnbr_fd_u(unsigned int u_number, int fd)
 static size_t	sk_recursive(unsigned long ul_number, int fd)
 {
 	char	c;
-	size_t cnt_prnt;
+	size_t	cnt_prnt;
 
 	cnt_prnt = 0;
 	if ((0 <= ul_number) & (ul_number <= 9))

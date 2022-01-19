@@ -54,8 +54,8 @@ static size_t	sk_puthex_recursive(unsigned long ul_number, int fd)
 /* ************************************************************************** */
 static char	conv_dec_to_hex(unsigned int u_number)
 {
-	char c;
-	
+	char	c;
+
 	if (u_number < 10)
 		c = u_number + '0';
 	else

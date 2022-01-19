@@ -17,7 +17,6 @@ size_t	ft_printf_fd_s(char *s, int fd)
 	size_t	len;
 
 	len = ft_strlen(s);
-	
 	if (fd == -1)
 		return (0);
 	if (!s)
