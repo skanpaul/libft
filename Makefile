@@ -37,7 +37,8 @@ SRC_LIBFT	= \
 		ft_printf.c \
 		ft_printf_fd_s.c	ft_printf_fd_ptr.c \
 		ft_putnbr_fd_u.c \
-		ft_printf_fd_xlow.c	ft_printf_fd_xup.c
+		ft_printf_fd_xlow.c	ft_printf_fd_xup.c \
+		get_next_line.c
 
 OBJ_LIBFT	= ${SRC_LIBFT:.c=.o}
 # **************************************************************************** #
