@@ -12,47 +12,53 @@
 #include "libft.h"
 
 /* ************************************************************************** */
-static size_t	sk_puthex_recursive(unsigned long n, int fd, size_t cnt_prnt);
+static size_t	sk_puthex_recursive(unsigned long n, int fd);
+static char		conv_dec_to_hex(unsigned int u_number);
 
 /* ************************************************************************** */
-size_t	ft_printf_fd_ptr(unsigned long n, int fd)
+size_t	ft_printf_fd_ptr(unsigned long u_number, int fd)
 {
 	size_t	cnt_prnt;
-	char	c;
 
 	cnt_prnt = 0;
-	c = '\0';
 	write(fd, "0x", 2);
 	cnt_prnt += 2;
-	cnt_prnt += sk_puthex_recursive(n, fd, cnt_prnt);
+	cnt_prnt += sk_puthex_recursive(u_number, fd);
 	return (cnt_prnt);
 }
 
 /* ************************************************************************** */
-static size_t	sk_puthex_recursive(unsigned long n, int fd, size_t cnt_prnt)
+static size_t	sk_puthex_recursive(unsigned long ul_number, int fd)
 {
-	char			c;
-	unsigned long	modulo;
+	char	c;
+	size_t	cnt_prnt;
 
-	if ((0 <= n) && (n <= 15))
+	cnt_prnt = 0;
+	if ((0 <= ul_number) && (ul_number <= 15))
 	{
-		if (n < 10)
-			c = n + '0';
-		else
-			c = n - 10 + 'a';
+		c = conv_dec_to_hex(ul_number);
 		write(fd, &c, 1);
 		cnt_prnt++;
 	}
 	else
 	{
-		cnt_prnt += sk_puthex_recursive((n / 16), fd, cnt_prnt);
-		modulo = n % 16;
-		if (modulo < 10)
-			c = modulo + '0';
-		else
-			c = modulo - 10 + 'a';
+		cnt_prnt += sk_puthex_recursive((ul_number / 16), fd);
+		ul_number = ul_number % 16;
+		c = conv_dec_to_hex(ul_number);
 		write(fd, &c, 1);
 		cnt_prnt++;
 	}
 	return (cnt_prnt);
+}
+
+/* ************************************************************************** */
+static char	conv_dec_to_hex(unsigned int u_number)
+{
+	char c;
+	
+	if (u_number < 10)
+		c = u_number + '0';
+	else
+		c = u_number - 10 + 'a';
+	return (c);
 }

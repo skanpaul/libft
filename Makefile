@@ -15,7 +15,8 @@ AR 			= ar -rcs
 RM			= rm -f
 NORM		= norminette -R CheckForbiddenSourceHeader
 # **************************************************************************** #
-NAME		= libft.a
+NAME	= libft.a
+# NAME	= libftprintf.a
 # ----------------------------------------------------------------------------
 PATH_LIBFT	= ./
 HD_LIBFT	= libft.h
@@ -32,7 +33,12 @@ SRC_LIBFT	= \
 		ft_putstr_fd.c	ft_putendl_fd.c ft_putnbr_fd.c \
 		ft_lstnew.c		ft_lstadd_front.c	ft_lstsize.c \
 		ft_lstlast.c 	ft_lstadd_back.c	ft_lstdelone.c \
-		ft_lstclear.c	ft_lstiter.c		ft_lstmap.c
+		ft_lstclear.c	ft_lstiter.c		ft_lstmap.c\
+		ft_printf.c \
+		ft_printf_fd_s.c	ft_printf_fd_ptr.c \
+		ft_putnbr_fd_u.c \
+		ft_printf_fd_xlow.c	ft_printf_fd_xup.c
+
 OBJ_LIBFT	= ${SRC_LIBFT:.c=.o}
 # **************************************************************************** #
 PATH_SUBMAKE	= ${PATH_LIBFT}

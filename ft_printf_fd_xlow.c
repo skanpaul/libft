@@ -31,7 +31,6 @@ static size_t	sk_puthex_recursive(unsigned int u_number, int fd)
 {
 	char			c;
 	size_t 			cnt_prnt;
-	unsigned long	modulo;
 
 	cnt_prnt = 0;
 	if ((0 <= u_number) && (u_number <= 15))
