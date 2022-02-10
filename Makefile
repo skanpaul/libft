@@ -9,15 +9,15 @@
 #    Updated: 2021/11/04 16:34:14 by ski              ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
+NAME	= libft.a
+# NAME	= libftprintf.a
+# **************************************************************************** #
 CC			= gcc
 CFLAGS 		= -Wall -Wextra -Werror
 AR 			= ar -rcs
 RM			= rm -f
 NORM		= norminette -R CheckForbiddenSourceHeader
 # **************************************************************************** #
-NAME	= libft.a
-# NAME	= libftprintf.a
-# ----------------------------------------------------------------------------
 PATH_LIBFT	= ./
 HD_LIBFT	= libft.h
 SRC_LIBFT	= \
@@ -29,6 +29,7 @@ SRC_LIBFT	= \
 		ft_atoi.c \
 		ft_calloc.c		ft_strdup.c \
 		ft_substr.c		ft_strjoin.c	ft_strtrim.c	ft_split.c \
+		ft_split_count.c ft_split_free.c \
 		ft_itoa.c		ft_strmapi.c	ft_striteri.c	ft_putchar_fd.c \
 		ft_putstr_fd.c	ft_putendl_fd.c ft_putnbr_fd.c \
 		ft_lstnew.c		ft_lstadd_front.c	ft_lstsize.c \
@@ -50,7 +51,8 @@ HD_NORM			= ${HD_LIBFT}
 all: $(NAME)
 
 $(NAME): $(OBJ_LIBFT)
-	${AR} $(NAME) $(OBJ_LIBFT)
+	${AR} $(NAME) $?
+# ${AR} $(NAME) $(OBJ_LIBFT)
 
 clean:
 	${RM} $(OBJ_LIBFT)
@@ -70,3 +72,6 @@ nono:
 #so:
 #	$(CC) -nostartfiles -fPIC $(CFLAGS) $(SRC_LIBFT)
 #	gcc -nostartfiles -shared -o libft.so $(OBJ_LIBFT) ${OBJ_LIBFT_BONUS} 
+
+# test:
+# 	echo $(OBJ_LIBFT)
