@@ -12,14 +12,16 @@
 #include "libft.h"
 
 /* ************************************************************************** */
-void	ll_add_elem_to_bottom(t_elem *top_elem, t_elem *new_elem)
+void	ll_add_elem_to_bottom(t_elem **top_elem, t_elem *new_elem)
 {
 	t_elem	*ptr;
 
-	ptr = top_elem;
+	ptr = *top_elem;
+	if (top_elem == NULL)
+		return ;
 	if (ptr == NULL)
 	{
-		top_elem = new_elem;
+		*top_elem = new_elem;
 		return ;
 	}
 	while (ptr->next != NULL)

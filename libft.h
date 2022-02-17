@@ -112,8 +112,8 @@ t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
 /* **** CHAINLIST from Sorakann Ki ****************************************** */
 t_elem	*ll_new_elem(void *content);
 void	ll_del_elem(t_elem *elem, void (*del_content)(void *));
-void	ll_add_elem_to_top(t_elem *top_elem, t_elem *new_elem);
-void	ll_add_elem_to_bottom(t_elem *top_elem, t_elem *new_elem);
+void	ll_add_elem_to_top(t_elem **top_elem, t_elem *new_elem);
+void	ll_add_elem_to_bottom(t_elem **top_elem, t_elem *new_elem);
 t_elem	*ll_get_last_elem(t_elem *top_elem);
 
 // t_elem	*ll_get_elem(t_elem *top_elem);
