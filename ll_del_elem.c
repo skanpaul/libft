@@ -16,7 +16,8 @@ void	ll_del_elem(t_elem *elem, void (*del_content)(void *))
 {
 	if ((elem == NULL) || (del_content == NULL))
 		return ;
-	del(elem->content);
+	del_content(elem->content);
 	free(elem);
+	elem = NULL;
 	return ;
 }

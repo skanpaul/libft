@@ -93,13 +93,20 @@ size_t	ft_putnbr_fd(int number, int fd);// improved: 18.01.2022
 
 /* **** CHAINLIST from 42 Lausanne ****************************************** */
 t_list	*ft_lstnew(void *content);
-void	ft_lstdelone(t_list *lst, void (*del)(void *)); // delete the content of the element and the element itself
-void	ft_lstadd_front(t_list **alst, t_list *new); // put element on the TOP of the list
-void	ft_lstadd_back(t_list **alst, t_list *new); // put element on the BOTTOM of the list
-t_list	*ft_lstlast(t_list *lst);	// return pointer on the LAST ELEMENT
+/* ft_lstdelone: delete the content of the element and the element itself */
+void	ft_lstdelone(t_list *lst, void (*del)(void *));
+/* ft_lstadd_front: put element on the TOP of the list */
+void	ft_lstadd_front(t_list **alst, t_list *new);
+/* ft_lstadd_back: put element on the BOTTOM of the list */
+void	ft_lstadd_back(t_list **alst, t_list *new);
+/* ft_lstlast: return pointer on the LAST ELEMENT */
+t_list	*ft_lstlast(t_list *lst);
 int		ft_lstsize(t_list *lst);
-void	ft_lstclear(t_list **lst, void (*del)(void *)); // delete list and content of all elements
-void	ft_lstiter(t_list *lst, void (*f)(void *)); // modifie content of all elements with f
+/* ft_lstclear: delete list and content of all elements */
+void	ft_lstclear(t_list **lst, void (*del)(void *));
+/* ft_lstiter: modifie content of all elements with f */
+void	ft_lstiter(t_list *lst, void (*f)(void *));
+/* ft_lstmap: copy the list and assign the content f */
 t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
 
 /* **** CHAINLIST from Sorakann Ki ****************************************** */
@@ -108,11 +115,13 @@ void	ll_del_elem(t_elem *elem, void (*del_content)(void *));
 void	ll_add_elem_to_top(t_elem *top_elem, t_elem *new_elem);
 void	ll_add_elem_to_bottom(t_elem *top_elem, t_elem *new_elem);
 t_elem	*ll_get_last_elem(t_elem *top_elem);
+
 // t_elem	*ll_get_elem(t_elem *top_elem);
-// int		ft_lstsize(t_list *lst);
-// void	ft_lstclear(t_list **lst, void (*del)(void *)); // delete list and content of all elements
-// void	ft_lstiter(t_list *lst, void (*f)(void *)); // modifie content of all elements with f
-// t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
+
+int		ll_size(t_elem *top_elem);
+void	ll_del_list(t_elem *top_elem, void (*del_content)(void *));
+void	ll_change_content_list(t_elem *top_elem, void (*f)(void *));
+t_elem	*ll_copy_list(t_elem *top_elem, void *(*f)(void *), void (*d)(void *));
 
 /* **** PRINTF() ************************************************************ */
 int		ft_printf(const char *text, ...);
