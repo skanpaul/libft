@@ -23,13 +23,20 @@
 # include <limits.h>
 # include <stdbool.h>
 # include <fcntl.h>
-
 /* ************************************************************************** */
+/* ---- CHAINLIST for 42 Lausanne ------------------------------------------- */
 typedef struct s_list
 {
 	void			*content;
 	struct s_list	*next;
 }	t_list;
+/* ---- CHAINLIST for Sorakann Ki------------------------------------------- */
+typedef struct s_elem
+{
+	void			*content;
+	struct s_elem	*next;
+	struct s_elem	*previous;
+}	t_elem;
 /* -------------------------------------------------------------------------- */
 typedef struct s_gnl
 {
@@ -38,7 +45,6 @@ typedef struct s_gnl
 	char			*old;
 	int				line_done;
 }t_gnl;
-
 /* ************************************************************************** */
 int		ft_isalpha(int c);
 int		ft_isdigit(int c);
@@ -97,11 +103,12 @@ void	ft_lstiter(t_list *lst, void (*f)(void *)); // modifie content of all eleme
 t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
 
 /* **** CHAINLIST from Sorakann Ki ****************************************** */
-// t_list	*ft_lstnew(void *content);
-// void	ft_lstdelone(t_list *lst, void (*del)(void *)); // delete the content of the element and the element itself
-// void	ft_lstadd_front(t_list **alst, t_list *new); // put element on the TOP of the list
-// void	ft_lstadd_back(t_list **alst, t_list *new); // put element on the BOTTOM of the list
-// t_list	*ft_lstlast(t_list *lst);	// return pointer on the LAST ELEMENT
+t_elem	*ll_new_elem(void *content);
+void	ll_del_elem(t_elem *elem, void (*del_content)(void *));
+void	ll_add_elem_to_top(t_elem *top_elem, t_elem *new_elem);
+void	ll_add_elem_to_bottom(t_elem *top_elem, t_elem *new_elem);
+t_elem	*ll_get_last_elem(t_elem *top_elem);
+// t_elem	*ll_get_elem(t_elem *top_elem);
 // int		ft_lstsize(t_list *lst);
 // void	ft_lstclear(t_list **lst, void (*del)(void *)); // delete list and content of all elements
 // void	ft_lstiter(t_list *lst, void (*f)(void *)); // modifie content of all elements with f
