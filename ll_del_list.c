@@ -12,20 +12,40 @@
 #include "libft.h"
 
 /* ************************************************************************** */
-void	ll_del_list(t_elem *top_elem, void (*del_content)(void *))
+void	ll_del_list(t_elem **top_elem, void (*del_content)(void *))
 {
-	t_elem	*ptr;
+	t_list	*ptr1;
+	t_list	*ptr2;
 
-	ptr = NULL;
-	if ((top_elem == NULL) || (del_content == NULL))
+	ptr1 = *top_elem;
+	ptr2 = NULL;
+	if ((ptr1 == NULL) || (del_content == NULL))
 		return ;
-	while (top_elem->next != NULL)
+	while (ptr1->next != NULL)
 	{
-		ptr = top_elem->next;
-		ll_del_elem(top_elem, del_content);
-		top_elem = ptr;
+		ptr2 = ptr1->next;
+		ft_lstdelone(ptr1, del_content);
+		ptr1 = ptr2;
 	}
-	ll_del_elem(top_elem, del_content);
-	top_elem = NULL;
+	ft_lstdelone(ptr1, del_content);
+	*top_elem = NULL;
 	return ;
 }
+
+
+// {
+// 		t_elem	*ptr;
+
+// 	ptr = NULL;
+// 	if ((*top_elem == NULL) || (del_content == NULL))
+// 		return ;
+// 	while ((*top_elem)->next != NULL)
+// 	{
+// 		ptr = (*top_elem)->next;
+// 		ll_del_elem(top_elem, del_content);
+// 		top_elem = ptr;
+// 	}
+// 	ll_del_elem(top_elem, del_content);
+// 	top_elem = NULL;
+// 	return ;
+// }

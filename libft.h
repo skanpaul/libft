@@ -119,7 +119,7 @@ t_elem	*ll_get_last_elem(t_elem *top_elem);
 // t_elem	*ll_get_elem(t_elem *top_elem);
 
 int		ll_size(t_elem *top_elem);
-void	ll_del_list(t_elem *top_elem, void (*del_content)(void *));
+void	ll_del_list(t_elem **top_elem, void (*del_content)(void *));
 void	ll_change_content_list(t_elem *top_elem, void (*f)(void *));
 t_elem	*ll_copy_list(t_elem *top_elem, void *(*f)(void *), void (*d)(void *));
 
