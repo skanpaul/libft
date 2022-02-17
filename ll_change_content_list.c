@@ -1,25 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ll_new_elem.c                                      :+:      :+:    :+:   */
+/*   ll_change_content_list.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ski <marvin@42lausanne.ch>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/17 09:43:01 by ski               #+#    #+#             */
-/*   Updated: 2022/02/17 09:43:03 by ski              ###   ########.fr       */
+/*   Created: 2022/02/17 10:44:03 by ski               #+#    #+#             */
+/*   Updated: 2022/02/17 10:44:04 by ski              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "libft.h"
 
 /* ************************************************************************** */
-t_elem	*ll_new_elem(void *content)
+void	ll_change_content_list(t_elem *top_elem, void (*f)(void *))
 {
-	t_elem	*elem;
+	t_elem	*ptr1;
+	t_elem	*ptr2;
 
-	elem = (t_elem *)malloc(1 * sizeof(t_elem));
-	if (!elem)
-		return (NULL);
-	elem->content = content;
-	elem->next = NULL;
-	return (elem);
+	ptr1 = top_elem;
+	ptr2 = NULL;
+	if ((ptr1 == NULL) || (f == NULL))
+		return ;
+	while (ptr1->next != NULL)
+	{
+		ptr2 = ptr1->next;
+		f(ptr1->content);
+		ptr1 = ptr2;
+	}
+	f(ptr1->content);
 }

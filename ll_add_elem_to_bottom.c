@@ -14,7 +14,7 @@
 /* ************************************************************************** */
 void	ll_add_elem_to_bottom(t_elem *top_elem, t_elem *new_elem)
 {
-	t_list	*ptr;
+	t_elem	*ptr;
 
 	ptr = top_elem;
 	if (ptr == NULL)

@@ -35,6 +35,10 @@ SRC_LIBFT	= \
 		ft_lstnew.c		ft_lstadd_front.c	ft_lstsize.c \
 		ft_lstlast.c 	ft_lstadd_back.c	ft_lstdelone.c \
 		ft_lstclear.c	ft_lstiter.c		ft_lstmap.c\
+		ll_new_elem.c				ll_del_elem.c \
+		ll_add_elem_to_top.c		ll_add_elem_to_bottom.c \
+		ll_get_last_elem.c			ll_size.c \
+		ll_change_content_list.c	ll_copy_list.c		ll_del_list.c \
 		ft_printf.c \
 		ft_printf_fd_s.c	ft_printf_fd_ptr.c \
 		ft_putnbr_fd_u.c \

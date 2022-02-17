@@ -1,25 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ll_new_elem.c                                      :+:      :+:    :+:   */
+/*   ll_size.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ski <marvin@42lausanne.ch>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/17 09:43:01 by ski               #+#    #+#             */
-/*   Updated: 2022/02/17 09:43:03 by ski              ###   ########.fr       */
+/*   Created: 2022/02/17 10:26:24 by ski               #+#    #+#             */
+/*   Updated: 2022/02/17 10:26:26 by ski              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "libft.h"
 
 /* ************************************************************************** */
-t_elem	*ll_new_elem(void *content)
+int	ll_size(t_elem *top_elem)
 {
-	t_elem	*elem;
+	int		size;
+	t_elem	*ptr;
 
-	elem = (t_elem *)malloc(1 * sizeof(t_elem));
-	if (!elem)
-		return (NULL);
-	elem->content = content;
-	elem->next = NULL;
-	return (elem);
+	ptr = top_elem;
+	if (!ptr)
+		return (0);
+	size = 0;
+	while (ptr != NULL)
+	{
+		ptr = ptr->next;
+		size++;
+	}
+	return (size);
 }
+
+
