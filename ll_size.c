@@ -28,5 +28,3 @@ int	ll_size(t_elem *top_elem)
 	}
 	return (size);
 }
-
-

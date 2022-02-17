@@ -28,11 +28,11 @@ t_elem	*ll_copy_list(t_elem *top_elem, void *(*f)(void *), void (*d)(void *))
 		if (new_elem == NULL)
 		{
 			if (new_top_elem != NULL)
-				ll_del_list(new_top_elem, d);
+				ll_del_list(&new_top_elem, d);
 
 			return (NULL);
 		}
-		ll_add_elem_to_bottom(new_top_elem, new_elem);
+		ll_add_elem_to_bottom(&new_top_elem, new_elem);
 		ptr = ptr->next;
 	}
 	return (new_top_elem);

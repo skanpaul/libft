@@ -14,8 +14,8 @@
 /* ************************************************************************** */
 void	ll_del_list(t_elem **top_elem, void (*del_content)(void *))
 {
-	t_list	*ptr1;
-	t_list	*ptr2;
+	t_elem	*ptr1;
+	t_elem	*ptr2;
 
 	ptr1 = *top_elem;
 	ptr2 = NULL;
@@ -24,10 +24,10 @@ void	ll_del_list(t_elem **top_elem, void (*del_content)(void *))
 	while (ptr1->next != NULL)
 	{
 		ptr2 = ptr1->next;
-		ft_lstdelone(ptr1, del_content);
+		ll_del_elem(ptr1, del_content);
 		ptr1 = ptr2;
 	}
-	ft_lstdelone(ptr1, del_content);
+	ll_del_elem(ptr1, del_content);
 	*top_elem = NULL;
 	return ;
 }
