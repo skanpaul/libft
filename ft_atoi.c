@@ -25,14 +25,14 @@ int	ft_atoi(const char *str)
 	i = 0;
 	while (ft_isspace(str[i]))
 		i++;
-	if ((str[i] == '-') | (str[i] == '+'))
+	if ((str[i] == '-') || (str[i] == '+'))
 	{
 		if (str[i] == '-')
 			sign = (-1);
 		i++;
 	}
 	value = 0;
-	while ((str[i] != '\0') & ft_isdigit(str[i]))
+	while ((str[i] != '\0') && ft_isdigit(str[i]))
 	{
 		value = value * 10 + (str[i] - 48);
 		i++;
@@ -44,8 +44,8 @@ int	ft_atoi(const char *str)
 /* ************************************************************************** */
 static int	ft_isspace(int c)
 {
-	if ((c == '\t') | (c == '\n') | (c == '\v')
-		| (c == '\f') | (c == '\r') | (c == ' '))
+	if ((c == '\t') || (c == '\n') || (c == '\v')
+		|| (c == '\f') || (c == '\r') || (c == ' '))
 		return (1);
 	return (0);
 }
