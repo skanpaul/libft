@@ -48,9 +48,6 @@ int	ft_printf(const char *text, ...)
 /* ************************************************************************** */
 static int	print_variadic(va_list ptr_var, char type_conv)
 {
-	int	n;
-
-	n = 0;
 	if (type_conv == 'c')
 		return (ft_putchar_fd(va_arg(ptr_var, int), 1));
 	if (type_conv == 's')
